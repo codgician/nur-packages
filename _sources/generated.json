@@ -1,0 +1,22 @@
+{
+    "aiursoft-tracer": {
+        "cargoLocks": null,
+        "date": "2024-08-22",
+        "extract": null,
+        "name": "aiursoft-tracer",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "Anduin2017",
+            "repo": "Tracer",
+            "rev": "957a13a7db61822e06e7a4a151e890225fb91605",
+            "sha256": "sha256-M3sJXXlEebdHRZbGqhV7k+5siHWLf1RrHwBrsxFfHaU=",
+            "type": "github"
+        },
+        "version": "957a13a7db61822e06e7a4a151e890225fb91605"
+    }
+}

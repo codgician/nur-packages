@@ -17,6 +17,10 @@
     {
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
 
+      devShell = forAllSystems (system: with nixpkgs.legacyPackages.${system}; mkShell {
+        buildInputs = [ nvfetcher ];
+      });
+
       legacyPackages = forAllSystems (system: import ./default.nix {
         pkgs = import nixpkgs { inherit system; };
       });
