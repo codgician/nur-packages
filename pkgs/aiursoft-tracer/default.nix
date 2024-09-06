@@ -34,14 +34,14 @@ buildDotnetModule {
 
   projectFile = "Aiursoft.Tracer.sln";
 
-  postInstall = ''
-    rm -rf $out/lib/${pname}/wwwroot
-    ln -s ${wwwroot} $out/lib/${pname}/wwwroot
-  '';
-
-  # Patch working directory
   postFixup = ''
-    dir=$out/lib/${pname}
+    # Symlink wwwroot
+    rm -rf $out/lib/${pname}/wwwroot
+    mkdir -p $out/assets
+    ln -s ${wwwroot} $out/assets/wwwroot
+
+    # Patch working directory
+    dir=$out/assets
     sedexpr='s/\(exec.*Aiursoft\.Tracer.*\)/(cd '
     sedexpr+=''${dir//\//\\/}
     sedexpr+=' \&\& \1)/g'
