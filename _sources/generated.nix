@@ -3,14 +3,15 @@
 {
   aiursoft-tracer = {
     pname = "aiursoft-tracer";
-    version = "957a13a7db61822e06e7a4a151e890225fb91605";
-    src = fetchFromGitHub {
-      owner = "Anduin2017";
-      repo = "Tracer";
-      rev = "957a13a7db61822e06e7a4a151e890225fb91605";
+    version = "9b12d878a0a2174cef634160c82094e20f61dbed";
+    src = fetchgit {
+      url = "https://gitlab.aiursoft.cn/aiursoft/tracer";
+      rev = "9b12d878a0a2174cef634160c82094e20f61dbed";
       fetchSubmodules = false;
-      sha256 = "sha256-M3sJXXlEebdHRZbGqhV7k+5siHWLf1RrHwBrsxFfHaU=";
+      deepClone = false;
+      leaveDotGit = false;
+      sha256 = "sha256-fOhToNCmh8yN6ZZzlLOuGaviy/WOAp3yq1M2KnHG0kQ=";
     };
-    date = "2024-08-22";
+    date = "2024-09-06";
   };
 }
