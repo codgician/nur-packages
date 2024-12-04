@@ -13,7 +13,7 @@ let
     owner = "AiursoftWeb";
     repo = "Tracer";
     rev = "9b12d878a0a2174cef634160c82094e20f61dbed";
-    sha256 = "sha256-fOhToNCmh8yN6ZZzlLOuGaviy/WOAp3yq1M2KnHG0kQ=";
+    hash = "sha256-fOhToNCmh8yN6ZZzlLOuGaviy/WOAp3yq1M2KnHG0kQ=";
   };
 
   version = "1.0.0-${builtins.substring 0 7 src.rev}";
