@@ -1,19 +1,27 @@
-{ lib, pkgs, sources, buildDotnetModule, dotnetCorePackages, buildNpmPackage, ... }:
+{ lib
+, pkgs
+, buildDotnetModule
+, dotnetCorePackages
+, buildNpmPackage
+, fetchFromGitHub
+, ...
+}:
 
 let
-  inherit (sources.aiursoft-tracer) pname src;
-  version = "1.0.0-${builtins.substring 0 7 sources.aiursoft-tracer.version}";
-
-  meta = with lib; {
-    homepage = "https://tracer.aiursoft.cn";
-    description = "Tracer is a simple network speed test app.";
-    license = licenses.mit;
+  pname = "aiursoft-tracer";
+  src = fetchFromGitHub {
+    owner = "AiursoftWeb";
+    repo = "Tracer";
+    rev = "9b12d878a0a2174cef634160c82094e20f61dbed";
+    sha256 = "sha256-fOhToNCmh8yN6ZZzlLOuGaviy/WOAp3yq1M2KnHG0kQ=";
   };
+
+  version = "1.0.0-${builtins.substring 0 7 src.rev}";
 
   wwwroot = buildNpmPackage {
     pname = "${pname}-wwwroot";
     src = "${src}/src/wwwroot";
-    inherit version meta;
+    inherit version;
     npmDepsHash = "sha256-6gfwlUqi0coQ4qoQyw3M1cPWTCjtbWyhl7wtVdhvGKc=";
     dontNpmBuild = true;
 
@@ -24,7 +32,7 @@ let
   };
 in
 buildDotnetModule {
-  inherit pname src version meta wwwroot;
+  inherit pname src version wwwroot;
 
   dotnet-sdk = dotnetCorePackages.sdk_8_0;
   dotnet-runtime = dotnetCorePackages.aspnetcore_8_0;
@@ -47,4 +55,11 @@ buildDotnetModule {
     sedexpr+=' \&\& \1)/g'
     sed -i -e "$sedexpr" $out/bin/Aiursoft.Tracer
   '';
+
+  meta = with lib; {
+    homepage = "https://tracer.aiursoft.cn";
+    description = "Tracer is a simple network speed test app.";
+    license = licenses.mit;
+    passthru.updateScript = ./update.sh;
+  };
 }
