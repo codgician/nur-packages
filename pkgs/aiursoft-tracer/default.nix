@@ -56,10 +56,12 @@ buildDotnetModule {
     sed -i -e "$sedexpr" $out/bin/Aiursoft.Tracer
   '';
 
+  passthru.updateScript = ./update.sh;
+
   meta = with lib; {
     homepage = "https://tracer.aiursoft.cn";
     description = "Tracer is a simple network speed test app.";
     license = licenses.mit;
-    passthru.updateScript = ./update.sh;
+    mainProgram = "Aiursoft.Tracer";
   };
 }
