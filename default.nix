@@ -11,7 +11,4 @@
   lib = import ./lib { inherit pkgs; }; # functions
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
-
-  # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
-  # ...
-} // (import ./pkgs)
+} // (import ./pkgs { inherit pkgs; })

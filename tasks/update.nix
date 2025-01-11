@@ -1,10 +1,10 @@
 /*
+  Forked from nixpkgs
   To run:
 
-      nix-shell maintainers/scripts/update.nix
+      nix-shell tasks/update.nix
 
   See https://nixos.org/manual/nixpkgs/unstable/#var-passthru-updateScript
-  Forked from nixpkgs
 */
 { package ? null
 , maintainer ? null
