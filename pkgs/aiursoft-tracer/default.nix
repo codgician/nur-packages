@@ -12,8 +12,8 @@ let
   src = fetchFromGitHub {
     owner = "AiursoftWeb";
     repo = "Tracer";
-    rev = "a72a35d733b15bd85bb72341b36483cfd185bb73";
-    hash = "sha256-cDdEbaZb936rkkVZ7GPGQwSgGAT52Dxyic/ipP7BhbM=";
+    rev = "d0df417a4bdb0b9650af42ddad48ef23756faab1";
+    hash = "sha256-LESCkY28fs0rMyY5sMmhy4RnyfPGGobtbG9+oX6D5bs=";
   };
 
   version = "1.0.0-${builtins.substring 0 7 src.rev}";
@@ -34,9 +34,9 @@ in
 buildDotnetModule {
   inherit pname src version wwwroot;
 
-  dotnet-sdk = dotnetCorePackages.sdk_8_0;
-  dotnet-runtime = dotnetCorePackages.aspnetcore_8_0;
-  nugetDeps = ./deps.nix;
+  dotnet-sdk = dotnetCorePackages.sdk_9_0;
+  dotnet-runtime = dotnetCorePackages.aspnetcore_9_0;
+  nugetDeps = ./deps.json;
 
   nativeBuildInputs = with pkgs; [ patchelf ];
 
