@@ -1,6 +1,6 @@
 {
-  description = "📦 NUR packages for personal use.";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  description = "📦 NUR packages from codgician.";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
   outputs = { self, nixpkgs }:
     let
       systems = [
