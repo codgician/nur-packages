@@ -14,6 +14,7 @@
 
   example-package = pkgs.callPackage ./pkgs/example-package { };
   aiursoft-tracer = pkgs.callPackage ./pkgs/aiursoft-tracer { };
+  mtk_uartboot = pkgs.callPackage ./pkgs/mtk_uartboot { };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }
