@@ -13,6 +13,8 @@ permissions:
 jobs:
   flake:
     runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.get_packages.outputs.packages }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -52,14 +54,15 @@ jobs:
         run: |
           packages=$(nix eval .\#lib.getPackagesWithUpdateScript --raw --apply "x: builtins.toJSON (builtins.attrNames x)")
           echo "packages=$packages" >> $GITHUB_OUTPUT
+  
   package:
     needs: flake
     strategy:
       matrix: 
-        packages: ${{ fromJson(needs.flake.outputs.get_packages) }}
+        package: ${{ fromJson(needs.flake.outputs.packages) }}
       fail-fast: false
-     runs-on: ubuntu-latest
-     steps:
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
