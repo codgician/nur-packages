@@ -1,6 +1,6 @@
 { pkgs }:
 
-with pkgs.lib; {
+pkgs.lib.extend (self: super: with super; {
   # Add your library functions here
   #
   # hexint = x: hexvals.${toLower x};
@@ -9,6 +9,4 @@ with pkgs.lib; {
   packagesWithUpdateScript = filterAttrs
     (k: v: v?passthru && v.passthru?updateScript)
     (import ../pkgs { inherit pkgs; });
-
-  inherit getVersion;
-}
+})
