@@ -6,7 +6,9 @@ with pkgs.lib; {
   # hexint = x: hexvals.${toLower x};
 
   # Get packages with upgrade script
-  getPackagesWithUpdateScript = filterAttrs
+  packagesWithUpdateScript = filterAttrs
     (k: v: v?passthru && v.passthru?updateScript)
     (import ../pkgs { inherit pkgs; });
+
+  inherit getVersion;
 }
