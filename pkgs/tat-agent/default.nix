@@ -32,5 +32,6 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://cloud.tencent.com/product/tat";
     license = lib.licenses.mit;
     maintainers = [ ];
+    platforms = lib.platforms.linux;
   };
 }
