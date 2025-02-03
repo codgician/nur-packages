@@ -1,12 +1,11 @@
 { pkgs, ... }:
-let
-  callPackage = pkgs.lib.callPackageWith (pkgs // mypkgs);
-  mypkgs = {
-    aiursoft-tracer = callPackage ./aiursoft-tracer { };
-    mtk_uartboot = callPackage ./mtk_uartboot { };
-    tat-agent = callPackage ./tat-agent { };
-  };
+with pkgs.lib; let 
+  callPackage = callPackageWith (pkgs // mypkgs);
+  mypkgs = pipe (builtins.readDir ./.) [
+    (filterAttrs (_: type: type == "directory"))
+    (mapAttrs (k: v: callPackage ./${k} { }))
+  ];
 in
-pkgs.lib.filterAttrs (
+filterAttrs (
   k: v: !(v.meta ? platforms) || (builtins.elem pkgs.system v.meta.platforms)
 ) mypkgs
