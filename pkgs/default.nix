@@ -7,4 +7,6 @@ let
     tat-agent = callPackage ./tat-agent { };
   };
 in
-mypkgs
+pkgs.lib.filterAttrs (
+  k: v: !(v.meta ? platforms) || (builtins.elem pkgs.system v.meta.platforms)
+) mypkgs

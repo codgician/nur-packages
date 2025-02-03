@@ -23,8 +23,11 @@ rustPlatform.buildRustPackage rec {
   nativeBuildInputs = with pkgs; [ perl ];
   doCheck = false;
 
-  passthru.updateScript = nix-update-script { 
-    extraArgs = [ "--version" "branch=main" ];
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--version"
+      "branch=main"
+    ];
   };
 
   meta = {
