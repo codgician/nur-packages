@@ -4,6 +4,7 @@ let
   mypkgs = {
     aiursoft-tracer = callPackage ./aiursoft-tracer { };
     mtk_uartboot = callPackage ./mtk_uartboot { };
+    tat-agent = callPackage ./tat-agent { };
   };
 in
 mypkgs
