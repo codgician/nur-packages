@@ -8,7 +8,7 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "tat-agent";
-  version = "1.1.0";
+  version = "0.1.28-unstable-2024-10-21";
 
   src = fetchFromGitHub {
     owner = "Tencent";
