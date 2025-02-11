@@ -91,9 +91,9 @@
   },
   {
     "pname": "Microsoft.CodeCoverage",
-    "version": "17.12.0",
-    "hash": "sha256-lGjifppD0OBMBp28pjUfPipaeXg739n8cPhtHWoo5RE=",
-    "url": "https://nuget.aiursoft.cn/v3/package/microsoft.codecoverage/17.12.0/microsoft.codecoverage.17.12.0.nupkg"
+    "version": "17.13.0",
+    "hash": "sha256-GKrIxeyQo5Az1mztfQgea1kGtJwonnNOrXK/0ULfu8o=",
+    "url": "https://nuget.aiursoft.cn/v3/package/microsoft.codecoverage/17.13.0/microsoft.codecoverage.17.13.0.nupkg"
   },
   {
     "pname": "Microsoft.Extensions.DependencyInjection.Abstractions",
@@ -109,9 +109,9 @@
   },
   {
     "pname": "Microsoft.NET.Test.Sdk",
-    "version": "17.12.0",
-    "hash": "sha256-DKFEbhh2wPzahNeHdEoFig8tZh/LEVrFc5+zpT43Btg=",
-    "url": "https://nuget.aiursoft.cn/v3/package/microsoft.net.test.sdk/17.12.0/microsoft.net.test.sdk.17.12.0.nupkg"
+    "version": "17.13.0",
+    "hash": "sha256-sc2wvyV8cGm1FrNP2GGHEI584RCvRPu15erYCsgw5QY=",
+    "url": "https://nuget.aiursoft.cn/v3/package/microsoft.net.test.sdk/17.13.0/microsoft.net.test.sdk.17.13.0.nupkg"
   },
   {
     "pname": "Microsoft.Testing.Extensions.Telemetry",
@@ -150,10 +150,16 @@
     "url": "https://nuget.aiursoft.cn/v3/package/microsoft.testplatform.objectmodel/17.12.0/microsoft.testplatform.objectmodel.17.12.0.nupkg"
   },
   {
+    "pname": "Microsoft.TestPlatform.ObjectModel",
+    "version": "17.13.0",
+    "hash": "sha256-6S0fjfj8vA+h6dJVNwLi6oZhYDO/I/6hBZaq2VTW+Uk=",
+    "url": "https://nuget.aiursoft.cn/v3/package/microsoft.testplatform.objectmodel/17.13.0/microsoft.testplatform.objectmodel.17.13.0.nupkg"
+  },
+  {
     "pname": "Microsoft.TestPlatform.TestHost",
-    "version": "17.12.0",
-    "hash": "sha256-rf8Sh0fQq44Sneuvs64unkkIHg8kOjDGWE35j9iLx5I=",
-    "url": "https://nuget.aiursoft.cn/v3/package/microsoft.testplatform.testhost/17.12.0/microsoft.testplatform.testhost.17.12.0.nupkg"
+    "version": "17.13.0",
+    "hash": "sha256-L/CJzou7dhmShUgXq3aXL3CaLTJll17Q+JY2DBdUUpo=",
+    "url": "https://nuget.aiursoft.cn/v3/package/microsoft.testplatform.testhost/17.13.0/microsoft.testplatform.testhost.17.13.0.nupkg"
   },
   {
     "pname": "MSTest.Analyzers",
