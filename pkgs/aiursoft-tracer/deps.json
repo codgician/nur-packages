@@ -31,9 +31,9 @@
   },
   {
     "pname": "Aiursoft.CSTools",
-    "version": "9.0.1",
-    "hash": "sha256-c/k17a2XfUBEiVL0duOi3Dxcx3b/4BBnazAhRUxEzSQ=",
-    "url": "https://nuget.aiursoft.cn/v3/package/aiursoft.cstools/9.0.1/aiursoft.cstools.9.0.1.nupkg"
+    "version": "9.0.2",
+    "hash": "sha256-C+8DvRa3PmCmy+aTJqxIG8mVp3cK/0E/tu3PU8E9ePE=",
+    "url": "https://nuget.aiursoft.cn/v3/package/aiursoft.cstools/9.0.2/aiursoft.cstools.9.0.2.nupkg"
   },
   {
     "pname": "Aiursoft.Scanner",
@@ -49,9 +49,9 @@
   },
   {
     "pname": "Aiursoft.WebTools",
-    "version": "9.0.1",
-    "hash": "sha256-8xKpYxjrvy53X7A9He1gAJEQrwRBezwUSYd4zoAXlI0=",
-    "url": "https://nuget.aiursoft.cn/v3/package/aiursoft.webtools/9.0.1/aiursoft.webtools.9.0.1.nupkg"
+    "version": "9.0.2",
+    "hash": "sha256-bbnpIhMmbhTTEwZLLPpjXImMXG8i+6dYv6B3u6KwAAI=",
+    "url": "https://nuget.aiursoft.cn/v3/package/aiursoft.webtools/9.0.2/aiursoft.webtools.9.0.2.nupkg"
   },
   {
     "pname": "Aiursoft.WebTools.Abstractions",
