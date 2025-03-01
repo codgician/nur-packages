@@ -13,8 +13,8 @@ let
   src = fetchFromGitHub {
     owner = "AiursoftWeb";
     repo = "Tracer";
-    rev = "a22fef05095a46c9c08ac0306ae588d2aaf6640c";
-    hash = "sha256-Jy/c7h5V6ro2AHOIQaoxXOvPAVMQHctInseor/azy7U=";
+    rev = "9d71fe43733929cb535a0331208bc734a6d3e92d";
+    hash = "sha256-e3qsAp9jeF+kV+YmS1kgEnzDnb0vMNPKleqqtZwOP7k=";
   };
 
   version = "1.0.0-${builtins.substring 0 7 src.rev}";
