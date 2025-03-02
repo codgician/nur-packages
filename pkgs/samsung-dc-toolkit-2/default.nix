@@ -14,15 +14,7 @@ samsung-dc-toolkit-3.overrideAttrs (old: rec {
 
   buildInputs = [ stdenv.cc.cc.lib ];
 
-  installPhase = ''
-    runHook preInstall
-
-    mkdir -p $out/bin
-    cp ${src} $out/bin/Samsung_SSD_DC_Toolkit_V${version}
-    chmod +x $out/bin/Samsung_SSD_DC_Toolkit_V${version}
-
-    runHook postInstall
-  '';
-
-  meta.mainProgram = "Samsung_SSD_DC_Toolkit_V${version}";
+  meta = old.meta // {
+    mainProgram = "Samsung_SSD_DC_Toolkit_V${version}";
+  };
 })

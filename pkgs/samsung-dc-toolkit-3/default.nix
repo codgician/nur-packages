@@ -22,8 +22,8 @@ stdenv.mkDerivation rec {
     runHook preInstall
 
     mkdir -p $out/bin
-    cp ${src} $out/bin/Samsung_SSD_DC_Toolkit_V${version}
-    chmod +x $out/bin/Samsung_SSD_DC_Toolkit_V${version}
+    cp $src $out/bin/Samsung_SSD_DC_Toolkit_V''${version}
+    chmod +x $out/bin/Samsung_SSD_DC_Toolkit_V''${version}
 
     runHook postInstall
   '';
