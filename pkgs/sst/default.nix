@@ -34,7 +34,6 @@ stdenv.mkDerivation rec {
     '';
 
   buildInputs = [ stdenv.cc.cc.lib ];
-
   nativeBuildInputs = [
     autoPatchelfHook
     dpkg
