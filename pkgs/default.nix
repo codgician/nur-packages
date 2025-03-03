@@ -2,9 +2,24 @@
 with pkgs.lib;
 let
   callPackage = callPackageWith (pkgs // mypkgs);
-  mypkgs = pipe (builtins.readDir ./.) [
-    (filterAttrs (_: type: type == "directory"))
-    (mapAttrs (k: v: callPackage ./${k} { }))
-  ];
+  mkPkgAttrs =
+    path:
+    pipe (builtins.readDir path) [
+      (filterAttrs (_: type: type == "directory"))
+      (mapAttrs (k: v: callPackage "${path}/${k}" { }))
+    ];
+
+  mypkgs = mergeAttrsList (
+    (builtins.attrValues {
+      uncategorized = (mkPkgAttrs ./uncategorized);
+    })
+    ++ [
+      {
+        kernelModules = mkPkgAttrs ./kernel-modules;
+      }
+    ]
+  );
 in
-filterAttrs (k: v: !(v.meta ? platforms) || (builtins.elem pkgs.system v.meta.platforms)) mypkgs
+filterAttrsRecursive (
+  k: v: v != { } && (!((v ? meta) ? platforms) || (builtins.elem pkgs.system v.meta.platforms))
+) mypkgs
