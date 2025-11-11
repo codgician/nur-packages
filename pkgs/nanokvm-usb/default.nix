@@ -22,7 +22,7 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "sipeed";
     repo = "NanoKVM-USB";
-    rev = "b7694196081cf5e9699d59e2e2a2c6ac48e8dcd1";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-z0Sk7kTYTu7qP4j/7DJ1lFvGry/eH4bAfLH/u1RHSTE=";
   };
 
