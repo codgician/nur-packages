@@ -44,6 +44,7 @@ buildDotnetModule {
   nugetDeps = ./deps.json;
 
   projectFile = "Aiursoft.Tracer.sln";
+  enableParallelBuilding = false;
 
   postFixup = ''
     # Symlink wwwroot
