@@ -1,7 +1,7 @@
 {
   lib,
   pkgsCross,
-  stdenv,
+  gcc14Stdenv,
   fetchFromGitHub,
   acpica-tools,
   autoPatchelfHook,
@@ -10,7 +10,7 @@
   nix-update-script,
 }:
 
-stdenv.mkDerivation (finalAttrs: {
+gcc14Stdenv.mkDerivation (finalAttrs: {
   pname = "edk2-cix";
   version = "1.1.0-2";
 
@@ -30,7 +30,7 @@ stdenv.mkDerivation (finalAttrs: {
     "trivialautovarinit"
   ];
 
-  depsBuildBuild = [ stdenv.cc ];
+  depsBuildBuild = [ gcc14Stdenv.cc ];
 
   nativeBuildInputs = [
     acpica-tools
@@ -39,14 +39,14 @@ stdenv.mkDerivation (finalAttrs: {
     python3
   ]
   ++ (lib.optional (
-    stdenv.hostPlatform.system != "aarch64-linux"
-  ) pkgsCross.aarch64-multiplatform.stdenv.cc);
+    gcc14Stdenv.hostPlatform.system != "aarch64-linux"
+  ) pkgsCross.aarch64-multiplatform.gcc14Stdenv.cc);
 
   buildInputs = [
-    stdenv.cc.cc.lib
+    gcc14Stdenv.cc.cc.lib
   ];
 
-  GCC5_AARCH64_PREFIX = pkgsCross.aarch64-multiplatform.stdenv.cc.targetPrefix;
+  GCC5_AARCH64_PREFIX = pkgsCross.aarch64-multiplatform.gcc14Stdenv.cc.targetPrefix;
 
   postPatch = ''
     # Patch the pre-built binaries in edk2-non-osi before they're used
@@ -55,7 +55,7 @@ stdenv.mkDerivation (finalAttrs: {
 
     substituteInPlace ./Makefile \
       --replace-fail 'GCC5_AARCH64_PREFIX := aarch64-linux-gnu-' \
-                     'GCC5_AARCH64_PREFIX := ${pkgsCross.aarch64-multiplatform.stdenv.cc.targetPrefix}' 
+                     'GCC5_AARCH64_PREFIX := ${pkgsCross.aarch64-multiplatform.gcc14Stdenv.cc.targetPrefix}' 
                     
     patchShebangs .    
   '';
