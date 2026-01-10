@@ -52,19 +52,18 @@ gcc14Stdenv.mkDerivation (finalAttrs: {
   postPatch =
     let
       inherit (gcc14Stdenv.hostPlatform) system;
-      arch = lib.removeSuffix "-linux" system;
       archPath = if system == "x86_64-linux" then "X86_64"
                  else if system == "aarch64-linux" then "AARCH64"
                  else throw "Unsupported build platform: ${system}";
     in
     ''
-      # Patch the pre-built x86_64 binaries in edk2-non-osi before they're used
+      # Patch the pre-built binaries in edk2-non-osi before they're used
       # These are build tools that run on the build host, which may be skipped 
       # by autoPatchelf due to architecture mismatch, so we patch manually
       for bin in edk2-non-osi/Platform/CIX/Sky1/PackageTool/${archPath}/*; do
         if [ -f "$bin" ] && [ -x "$bin" ]; then
           echo "Patching package tool: $bin"
-          patchelf --set-interpreter ${glibc}/lib/ld-linux-${arch}.so.2 --set-rpath ${glibc}/lib "$bin" || true
+          patchelf --set-interpreter ${glibc}/lib/ld-linux* --set-rpath ${glibc}/lib "$bin" || true
         fi
       done
 
