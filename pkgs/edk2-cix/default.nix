@@ -4,8 +4,9 @@
   gcc14Stdenv,
   fetchFromGitHub,
   acpica-tools,
-  autoPatchelfHook,
+  glibc,
   libuuid,
+  patchelf,
   python3,
   nix-update-script,
 }:
@@ -34,8 +35,8 @@ gcc14Stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [
     acpica-tools
-    autoPatchelfHook
     libuuid
+    patchelf
     python3
   ]
   ++ (lib.optional (
@@ -48,17 +49,30 @@ gcc14Stdenv.mkDerivation (finalAttrs: {
 
   GCC5_AARCH64_PREFIX = pkgsCross.aarch64-multiplatform.gcc14Stdenv.cc.targetPrefix;
 
-  postPatch = ''
-    # Patch the pre-built binaries in edk2-non-osi before they're used
-    # These are the tools used during the build process
-    autoPatchelf edk2-non-osi/Platform/CIX/Sky1/PackageTool/*/
+  postPatch =
+    let
+      inherit (gcc14Stdenv.hostPlatform) system;
+      hostArch = if system == "x86_64-linux" then "X86_64"
+                 else if system == "aarch64-linux" then "AARCH64"
+                 else throw "Unsupported build platform: ${system}";
+    in
+    ''
+      # Patch the pre-built x86_64 binaries in edk2-non-osi before they're used
+      # These are build tools that run on the build host (x86_64), not the target (aarch64)
+      # autoPatchelf skips them due to architecture mismatch, so we patch manually
+      for bin in edk2-non-osi/Platform/CIX/Sky1/PackageTool/${hostArch}/*; do
+        if [ -f "$bin" ] && [ -x "$bin" ]; then
+          echo "Patching package tool: $bin"
+          patchelf --set-interpreter ${glibc}/lib/ld-linux*.so.2 --set-rpath ${glibc}/lib "$bin" || true
+        fi
+      done
 
-    substituteInPlace ./Makefile \
-      --replace-fail 'GCC5_AARCH64_PREFIX := aarch64-linux-gnu-' \
-                     'GCC5_AARCH64_PREFIX := ${pkgsCross.aarch64-multiplatform.gcc14Stdenv.cc.targetPrefix}' 
-                    
-    patchShebangs .    
-  '';
+      substituteInPlace ./Makefile \
+        --replace-fail 'GCC5_AARCH64_PREFIX := aarch64-linux-gnu-' \
+                       'GCC5_AARCH64_PREFIX := ${pkgsCross.aarch64-multiplatform.gcc14Stdenv.cc.targetPrefix}'
+                      
+      patchShebangs .    
+    '';
 
   preBuild = ''
     # Create directories that the Makefile expects to exist
@@ -66,7 +80,7 @@ gcc14Stdenv.mkDerivation (finalAttrs: {
     mkdir -p Build/O6N/RELEASE_GCC5/Firmwares
   '';
 
-  enableParallelBuilding = true;
+  enableParallelBuilding = false;
 
   installPhase = ''
     runHook preInstall
