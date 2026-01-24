@@ -53,6 +53,12 @@ stdenv.mkDerivation (finalAttrs: {
     cargoDepsCopy="$sourceRoot/cli/vendor"
   '';
 
+  postPatch = ''
+    # Remove postinstall script that tries to download binaries from GitHub
+    # We build the native binary ourselves with cargo
+    sed -i '/"postinstall":/d' package.json
+  '';
+
   buildPhase = ''
     runHook preBuild
 
@@ -69,6 +75,8 @@ stdenv.mkDerivation (finalAttrs: {
 
     cp -r dist $out/lib/agent-browser/
     cp -r node_modules $out/lib/agent-browser/
+    cp -r scripts $out/lib/agent-browser/
+    cp -r skills $out/lib/agent-browser/
     cp package.json $out/lib/agent-browser/
 
     install -Dm755 cli/target/release/agent-browser $out/lib/agent-browser/bin/agent-browser
