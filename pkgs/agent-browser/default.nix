@@ -27,7 +27,7 @@ stdenv.mkDerivation (finalAttrs: {
   cargoDeps = rustPlatform.fetchCargoVendor {
     inherit (finalAttrs) src;
     sourceRoot = "${finalAttrs.src.name}/cli";
-    hash = lib.fakeHash;
+    hash = "sha256-SvNHBLVFei6L3R3mOEN0pb8u0J6QbY1CWKd/9bwUG1Y=";
   };
 
   cargoRoot = "cli";
