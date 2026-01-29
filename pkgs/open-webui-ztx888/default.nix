@@ -6,9 +6,9 @@
 }:
 
 let
-  version = "0.7.3-7";
-  hash = "sha256-aLWVGTl95NBIuBzAxWKx9M5w+jl8YNc4x2OCQOZvU64=";
-  npmDepsHash = "sha256-lOtrYlSuX6M1xQsO2QE1QS8PrZEEdWWtius5FnvDjko=";
+  version = "0.7.3-8";
+  hash = "sha256-4Xs+dnYSMNxf1g608KXOsyu7R4enpiJvD/w6YdSoayY=";
+  npmDepsHash = "sha256-mjjVoMOseCaPqas+AEJY3LL2dRo8yLHlWnleXZU/AS0=";
 
   src = fetchFromGitHub {
     owner = "ztx888";
