@@ -19,13 +19,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "nanokvm-usb";
-  version = "1.1.3";
+  version = "1.1.4";
 
   src = fetchFromGitHub {
     owner = "sipeed";
     repo = "NanoKVM-USB";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-HZ2q5e+63+YV0DLZPQfUWBMwbM6VtVQ0Ne46s0TqXys=";
+    hash = "sha256-bdU64T+5Zkqn2FX2EmHWcWh85DWBNV6k5xKYEJQn+l0=";
   };
 
   sourceRoot = "${finalAttrs.src.name}/desktop";
