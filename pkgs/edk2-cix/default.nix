@@ -13,14 +13,14 @@
 
 gcc14Stdenv.mkDerivation (finalAttrs: {
   pname = "edk2-cix";
-  version = "1.1.0-2";
+  version = "1.2.0-1";
 
   src = fetchFromGitHub {
     fetchSubmodules = true;
     owner = "radxa-pkg";
     repo = finalAttrs.pname;
     rev = finalAttrs.version;
-    hash = "sha256-EAB3cA5bD1cWx66uUL6auwn9Ihe2dXXRq/wxULT4ahk=";
+    hash = "sha256-zG2X/h3XzRocavEsjTDspT8jFTB2QQP2s0Ta9zNo+Y8=";
   };
 
   sourceRoot = "${finalAttrs.src.name}/src";
