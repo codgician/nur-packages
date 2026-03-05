@@ -6,6 +6,7 @@
   acpica-tools,
   glibc,
   libuuid,
+  m4,
   patchelf,
   python3,
   nix-update-script,
@@ -36,6 +37,7 @@ gcc14Stdenv.mkDerivation (finalAttrs: {
   nativeBuildInputs = [
     acpica-tools
     libuuid
+    m4
     patchelf
     python3
   ]
