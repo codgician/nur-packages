@@ -49,8 +49,6 @@ gcc14Stdenv.mkDerivation (finalAttrs: {
     gcc14Stdenv.cc.cc.lib
   ];
 
-  GCC5_AARCH64_PREFIX = pkgsCross.aarch64-multiplatform.gcc14Stdenv.cc.targetPrefix;
-
   postPatch =
     let
       inherit (gcc14Stdenv.hostPlatform) system;
