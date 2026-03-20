@@ -74,7 +74,18 @@ gcc14Stdenv.mkDerivation (finalAttrs: {
       substituteInPlace ./Makefile \
         --replace-fail 'GCC5_AARCH64_PREFIX := aarch64-linux-gnu-' \
                        'GCC5_AARCH64_PREFIX := ${pkgsCross.aarch64-multiplatform.gcc14Stdenv.cc.targetPrefix}'
-                      
+
+      # Fix MemConfigBinTool.c: void main() has undefined return value causing
+      # build failure with bash -e (added in upstream 1.2.1)
+      for memtool in edk2-platforms/Platform/Radxa/Orion/*/mem_config/MemConfigBinTool.c; do
+        # Change 'void main' to 'int main' (handles CRLF line endings)
+        sed -i 's/void\r*$/int/' "$memtool"
+        # Change early 'return;' to 'return 1;' for error case
+        sed -i 's/return;\r*$/return 1;/' "$memtool"
+        # Add 'return 0;' before closing brace
+        sed -i '$ i\  return 0;' "$memtool"
+      done
+
       patchShebangs .    
     '';
 
