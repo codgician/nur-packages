@@ -34,6 +34,8 @@ let
       pnpmConfigHook
     ];
 
+    __darwinAllowLocalNetworking = true;
+
     pnpmDeps = fetchPnpmDeps {
       pname = "agent-browser-dashboard";
       inherit version src;
