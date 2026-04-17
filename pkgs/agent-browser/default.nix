@@ -9,6 +9,7 @@
   pnpmConfigHook,
   geist-font,
   nix-update-script,
+  which,
   writableTmpDirAsHomeHook,
 }:
 
@@ -89,7 +90,11 @@ rustPlatform.buildRustPackage (finalAttrs: {
     cp -r ${dashboard} source/packages/dashboard/out
   '';
 
-  nativeCheckInputs = [ writableTmpDirAsHomeHook ];
+  nativeCheckInputs = [
+    # doctor::helpers::which_exists spawns the external `which` binary
+    which
+    writableTmpDirAsHomeHook
+  ];
 
   __darwinAllowLocalNetworking = true;
 
