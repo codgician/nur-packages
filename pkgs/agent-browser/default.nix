@@ -102,10 +102,11 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   __darwinAllowLocalNetworking = true;
 
-  # skills/ contains SKILL.md for tools like Claude Code
+  # The `skills` subcommand looks for `skills/` and `skill-data/` next to
+  # `bin/`, relative to the canonical exe path. See cli/src/skills.rs.
   postInstall = ''
-    mkdir -p $out/share/agent-browser
-    cp -r ../skills $out/share/agent-browser/
+    cp -r ../skills $out/skills
+    cp -r ../skill-data $out/skill-data
   '';
 
   passthru = {
