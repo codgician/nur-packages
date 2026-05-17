@@ -31,7 +31,7 @@
 }:
 
 let
-  version = "v1.83.14-stable.patch.3";
+  version = "v1.86.0-rc.1";
 
   # Single source of truth for all three packages in the LiteLLM monorepo:
   # main `litellm`, `litellm-proxy-extras`, and `litellm-enterprise`.
@@ -45,8 +45,8 @@ let
   src = fetchFromGitHub {
     owner = "BerriAI";
     repo = "litellm";
-    rev = "cd340909219a0b9cba8e61092ad5da13687d61e2"; # ${version}
-    hash = "sha256-1nUwRbtC1NWmDN/0wptBrWfS8mXyZBAmkdVblSkbNgM=";
+    rev = "a72414a061afdde0b31aab9a253bbce071e837e9"; # ${version}
+    hash = "sha256-uInjKBUduDAfXHg5dQj5/qqqMJhlDeTri1kULkz5unM=";
   };
 
   # Pinned Prisma engines (v5.17.0 / commit 393aa359...). Required because
@@ -138,7 +138,7 @@ let
   # Only used by the `proxy` extra.
   litellm-proxy-extras = pyPkgs.buildPythonPackage {
     pname = "litellm-proxy-extras";
-    version = "0.4.69";
+    version = "0.4.72";
     pyproject = true;
 
     inherit src;
@@ -176,7 +176,7 @@ let
   # CI when allowUnfree is set.
   litellm-enterprise = pyPkgs.buildPythonPackage {
     pname = "litellm-enterprise";
-    version = "0.1.39";
+    version = "0.1.41";
     pyproject = true;
 
     inherit src;
@@ -229,8 +229,8 @@ let
       sed -i '/pyroscope-io==/d' pyproject.toml
       substituteInPlace pyproject.toml \
         --replace-warn 'uv_build==0.10.7' 'uv_build' \
-        --replace-warn 'litellm-proxy-extras==0.4.69' 'litellm-proxy-extras' \
-        --replace-warn 'litellm-enterprise==0.1.39' 'litellm-enterprise'
+        --replace-warn 'litellm-proxy-extras==0.4.72' 'litellm-proxy-extras' \
+        --replace-warn 'litellm-enterprise==0.1.41' 'litellm-enterprise'
     '';
 
 
