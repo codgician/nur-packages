@@ -49,6 +49,18 @@ let
       inherit version src pnpm;
       pnpmWorkspaces = [ "dashboard" ];
       fetcherVersion = 3;
+
+      # Serialize pnpm's package extraction/linking. The default parallel
+      # workers spike peak memory enough to get the deps fetch OOM-killed
+      # (SIGKILL, exit 137) at the end of `pnpm install` on the ~7 GB
+      # macos-latest CI runner. Concurrency only affects how the store is
+      # written, not its contents, so the fixed-output `hash` below is
+      # unchanged and Linux consumers are unaffected.
+      prePnpmInstall = ''
+        pnpm config set child-concurrency 1
+        pnpm config set network-concurrency 1
+      '';
+
       hash = "sha256-e7KlsuqS1YRcdQbKJwH9Dd6N28tYM3nPinJB5ZzSbp4=";
     };
 
