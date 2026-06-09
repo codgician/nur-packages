@@ -49,6 +49,28 @@ let
       inherit version src pnpm;
       pnpmWorkspaces = [ "dashboard" ];
       fetcherVersion = 3;
+
+      # The dashboard deps fetch OOM-kills (SIGKILL, exit 137) at the end of
+      # `pnpm install` ("added 753, done") on the ~7 GB macos-latest CI runner
+      # where atelier builds aarch64-darwin. The memory is in pnpm's worker
+      # pool that writes the content-addressable store, so cap it to one worker
+      # (PNPM_MAX_WORKERS for pnpm 11; PNPM_WORKERS=999, read by older pnpm as
+      # "CPUs to leave idle", collapses the pool to one as a fallback) and cap
+      # node's heap to force earlier GC. NODE_NO_WARNINGS drops the ~61k libuv
+      # "unmanaged fd" warnings the store write emits. child/network-concurrency
+      # bound the resolution phase. All are scheduling/memory/log knobs, so they
+      # change how the store is written, not its contents: the fixed-output
+      # `hash` below is unchanged (verified via `nix build --rebuild`) and Linux
+      # consumers are unaffected.
+      PNPM_MAX_WORKERS = "1";
+      PNPM_WORKERS = "999";
+      NODE_OPTIONS = "--max-old-space-size=2048";
+      NODE_NO_WARNINGS = "1";
+      prePnpmInstall = ''
+        pnpm config set child-concurrency 1
+        pnpm config set network-concurrency 1
+      '';
+
       hash = "sha256-e7KlsuqS1YRcdQbKJwH9Dd6N28tYM3nPinJB5ZzSbp4=";
     };
 
