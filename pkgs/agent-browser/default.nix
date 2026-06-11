@@ -99,7 +99,13 @@ rustPlatform.buildRustPackage (finalAttrs: {
   # `which_exists` spawns the external `which` binary at runtime to probe
   # for optional tools; pin it to an absolute store path.
   postPatch = ''
-    substituteInPlace src/doctor/helpers.rs src/install.rs --replace-fail \
+    substituteInPlace \
+      src/doctor/helpers.rs \
+      src/install.rs \
+      src/native/cdp/chrome.rs \
+      src/native/cdp/lightpanda.rs \
+      src/native/webdriver/safari.rs \
+      --replace-fail \
       '"which"' '"${lib.getExe which}"'
   '';
 
