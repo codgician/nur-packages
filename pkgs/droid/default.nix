@@ -14,16 +14,16 @@ let
 
   sources = {
     x86_64-linux = {
-      url = "https://downloads.factory.ai/factory-cli/releases/${version}/linux/x64/droid";
-      hash = "sha256-VNlRNGln8TWME4usNJB8TZHvJDHuBvFhaO+39n3CO+o=";
+      url = "https://downloads.factory.ai/factory-cli/releases/${version}/linux/x64-baseline/droid";
+      hash = "sha256-CzY57MaVDraPjHUY86uWUokUwOYR4DGg3JdBstQdqGU=";
     };
     aarch64-linux = {
       url = "https://downloads.factory.ai/factory-cli/releases/${version}/linux/arm64/droid";
       hash = "sha256-cK8WfmFG+6+/WFfSdGs75EhcZDugVmw9+UG+hcu5TFA=";
     };
     x86_64-darwin = {
-      url = "https://downloads.factory.ai/factory-cli/releases/${version}/darwin/x64/droid";
-      hash = "sha256-suq80OMjQrxfnEX6ObjR2DCXXXFvzyxOTdCecYDPy/Q=";
+      url = "https://downloads.factory.ai/factory-cli/releases/${version}/darwin/x64-baseline/droid";
+      hash = "sha256-khhwJM+KEBZSSnaGga0ClYlWPyMutnBU7TrT8ibQwTQ=";
     };
     aarch64-darwin = {
       url = "https://downloads.factory.ai/factory-cli/releases/${version}/darwin/arm64/droid";
