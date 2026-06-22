@@ -27,7 +27,7 @@ let
   # process. This only affects the build-time dashboard tooling, not the
   # runtime CLI, and the FOD `pnpmDeps.hash` is unaffected by the Node major.
   nodejs = nodejs_22;
-  pnpm = pnpm_11.override { inherit nodejs; };
+  pnpm = pnpm_11.override { nodejs-slim = nodejs; };
 
   version = "0.29.0";
 
