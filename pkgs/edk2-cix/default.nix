@@ -156,10 +156,19 @@ gcc14Stdenv.mkDerivation (finalAttrs: {
   meta = {
     description = "EDK2 for CIX platforms";
     homepage = finalAttrs.src.url;
+    license = with lib.licenses; [
+      bsd2Patent
+      gpl3Plus
+      unfreeRedistributableFirmware
+    ];
     maintainers = with lib.maintainers; [ codgician ];
     platforms = [
       "aarch64-linux"
       "x86_64-linux"
+    ];
+    sourceProvenance = with lib.sourceTypes; [
+      binaryFirmware
+      fromSource
     ];
   };
 })
