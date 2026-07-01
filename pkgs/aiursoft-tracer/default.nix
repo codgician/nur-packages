@@ -74,6 +74,7 @@ buildDotnetModule {
     homepage = "https://tracer.aiursoft.cn";
     description = "Tracer is a simple network speed test app.";
     license = licenses.mit;
+    platforms = platforms.linux;
     mainProgram = "Aiursoft.Tracer";
   };
 }
