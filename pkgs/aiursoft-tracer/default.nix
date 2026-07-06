@@ -71,7 +71,7 @@ buildDotnetModule {
   passthru.updateScript = ./update.sh;
 
   meta = with lib; {
-    homepage = "https://tracer.aiursoft.cn";
+    homepage = "https://tracer.aiursoft.com";
     description = "Tracer is a simple network speed test app.";
     license = licenses.mit;
     platforms = platforms.linux;
