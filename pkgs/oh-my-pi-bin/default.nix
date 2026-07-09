@@ -6,6 +6,7 @@
   patchelf,
   makeWrapper,
   git,
+  gh,
   xdg-utils,
 }:
 
@@ -56,13 +57,13 @@ stdenvNoCC.mkDerivation {
     install -Dm755 $src $out/libexec/omp
 
     # omp compiles ripgrep, glob, find and bash in-process, so unlike other
-    # agent CLIs it needs no external search/shell tools. Provide `git` (the
-    # git-backed tools drive a real `git`) and, on Linux, `xdg-utils` for the
-    # browser/OAuth `xdg-open` handoff. `--suffix` keeps a user's own git and
+    # agent CLIs it needs no external search/shell tools. Provide `git` and
+    # `gh` for the git/GitHub-backed tools and, on Linux, `xdg-utils` for the
+    # browser/OAuth `xdg-open` handoff. `--suffix` keeps a user's own tools and
     # desktop URL handler ahead of these fallbacks so their config still wins.
     makeWrapper $out/libexec/omp $out/bin/omp \
       --suffix PATH : ${
-        lib.makeBinPath ([ git ] ++ lib.optionals stdenvNoCC.hostPlatform.isLinux [ xdg-utils ])
+        lib.makeBinPath ([ git gh ] ++ lib.optionals stdenvNoCC.hostPlatform.isLinux [ xdg-utils ])
       }
 
     runHook postInstall
