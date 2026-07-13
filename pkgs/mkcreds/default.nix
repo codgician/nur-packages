@@ -5,6 +5,7 @@
   tpm2-tss,
   openssl,
   pkg-config,
+  nix-update-script,
 }:
 
 rustPlatform.buildRustPackage (finalAttrs: {
@@ -14,7 +15,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   src = fetchFromGitHub {
     owner = "codgician";
     repo = "mkcreds";
-    rev = "94a8cc11f2dfdfe294b041ed63a5a7a2004d0aa4";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-iiSD3e6VvUBkDWTIzsJkUPprZiI3Qc1cB2XQu8vjcl0=";
   };
 
@@ -41,7 +42,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     runHook postInstallCheck
   '';
 
-  passthru.updateScript = ./update.sh;
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     description = "Create systemd-creds compatible TPM2-sealed credentials with custom PCR values";
