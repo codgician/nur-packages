@@ -103,18 +103,20 @@ jobs:
               return [match[1], body.slice(start, end).trim()];
             }));
 
-            const upstream = values["Upstream repository"];
+            const upstreamInput = values["Upstream repository"];
             let parsed;
             try {
-              parsed = new URL(upstream);
+              parsed = new URL(upstreamInput);
             } catch {
               throw new Error("Upstream repository must be a canonical GitHub URL");
             }
             const parts = parsed.pathname.split("/").filter(Boolean);
             const canonical = parts.length === 2 ? `https://github.com/${parts[0]}/${parts[1]}` : "";
-            if (parsed.protocol !== "https:" || parsed.hostname !== "github.com" || parsed.port || parsed.username || parsed.password || parsed.search || parsed.hash || upstream !== canonical || parts[1].endsWith(".git")) {
+            const normalizedInput = upstreamInput.endsWith("/") ? upstreamInput.slice(0, -1) : upstreamInput;
+            if (parsed.protocol !== "https:" || parsed.hostname !== "github.com" || parsed.port || parsed.username || parsed.password || parsed.search || parsed.hash || parts.length !== 2 || normalizedInput !== canonical || parts[1].endsWith(".git")) {
               throw new Error("Upstream repository must be https://github.com/<owner>/<repository>");
             }
+            const upstream = canonical;
 
             let notes = values["Packaging notes"];
             if (notes === "_No response_") notes = "";
