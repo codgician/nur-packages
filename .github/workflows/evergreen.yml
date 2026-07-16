@@ -152,19 +152,22 @@ jobs:
         id: version
         if: steps.updater.outputs.exit_code == '0' && steps.updater.outputs.package_changes == 'true'
         run: |
-          new_version=$(nix eval --raw ".#$PACKAGE.version")
+          state=invalid
           set +e
-          state=$(.github/scripts/classify_version.sh \
-            "$(cat "$RUNNER_TEMP/old-version")" \
-            "$new_version" \
-            2> .ai-state/version-validation.log)
+          new_version=$(nix eval --raw ".#$PACKAGE.version" 2> .ai-state/version-validation.log)
           exit_code=$?
+          if [[ "$exit_code" == "0" ]]; then
+            state=$(.github/scripts/classify_version.sh \
+              "$(cat "$RUNNER_TEMP/old-version")" \
+              "$new_version" \
+              2>> .ai-state/version-validation.log)
+            exit_code=$?
+          fi
           set -e
           if [[ "$exit_code" != "0" ]]; then
             state=invalid
           fi
           echo "state=$state" >> "$GITHUB_OUTPUT"
-          echo "new_version=$new_version" >> "$GITHUB_OUTPUT"
       - name: Validate deterministic candidate
         id: deterministic
         if: steps.version.outputs.state == 'advanced'
@@ -212,7 +215,7 @@ jobs:
             --argjson updater_exit "$UPDATER_EXIT" \
             --arg version_state "$VERSION_STATE" \
             --arg deterministic_state "$deterministic_state" \
-            '{package: $package, route: "ai", updater_exit: $updater_exit, version_state: $version_state, deterministic_validation: $deterministic_state, updater_log: ".ai-state/updater.log", version_log: ".ai-state/version-validation.log", deterministic_log: (if $deterministic_state == "not-run" then null else ".ai-state/deterministic-validation.log" end)}' \
+            '{package: $package, route: "ai", updater_exit: $updater_exit, version_state: $version_state, deterministic_validation: $deterministic_state, updater_log: ".ai-state/updater.log", version_log: (if $version_state == "" then null else ".ai-state/version-validation.log" end), deterministic_log: (if $deterministic_state == "not-run" then null else ".ai-state/deterministic-validation.log" end)}' \
             > .ai-state/state.json
       - name: Review or repair with OpenCode
         if: steps.route.outputs.route == 'ai'

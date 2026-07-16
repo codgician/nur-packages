@@ -42,6 +42,7 @@ assert_route 0 false '' '' up-to-date
 assert_route 0 true advanced 0 deterministic
 assert_route 0 true advanced 1 ai
 assert_route 1 true '' '' ai
+assert_route 0 true invalid '' ai
 
 if .github/scripts/classify_version.sh \
   '0-unstable-2026-07-15' \
@@ -55,6 +56,11 @@ trap 'rm -rf "$tmpdir"' EXIT
 mkdir "$tmpdir/package"
 printf 'safe\n' > "$tmpdir/package/update.sh"
 .github/scripts/validate_package_source.sh "$tmpdir/package"
+ln -s "$tmpdir/package" "$tmpdir/package-link"
+if .github/scripts/validate_package_source.sh "$tmpdir/package-link" >/dev/null 2>&1; then
+  echo 'Symlinked package path unexpectedly passed the package-source guard' >&2
+  exit 1
+fi
 printf 'DENDRO_API_KEY\n' >> "$tmpdir/package/update.sh"
 if .github/scripts/validate_package_source.sh "$tmpdir/package" >/dev/null 2>&1; then
   echo 'CI credential reference unexpectedly passed the package-source guard' >&2
