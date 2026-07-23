@@ -38,6 +38,11 @@
 #
 # Each test then surfaces under flake `checks` and is built by CI.
 
-{ ... }:
+{ pkgs }:
 
-{ }
+let
+  nurPkgs = import ../pkgs { inherit pkgs; };
+in
+pkgs.lib.optionalAttrs (nurPkgs ? mdatp) {
+  mdatp = pkgs.callPackage ./mdatp.nix { inherit (nurPkgs) mdatp; };
+}
