@@ -7,19 +7,23 @@ input=${1:?prompt file or --check is required}
 : "${DENDRO_API_KEY:?DENDRO_API_KEY is required}"
 
 repository_root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd -P)
-export PI_CODING_AGENT_DIR="$repository_root/.github/pi"
+runtime_dir=$(mktemp -d)
+trap 'rm -rf "$runtime_dir"' EXIT
+cp "$repository_root/.github/pi/models.json" "$runtime_dir/models.json"
+export PI_CODING_AGENT_DIR="$runtime_dir"
 export PI_OFFLINE=1
 export PI_TELEMETRY=0
 
 if [[ "$input" == "--check" ]]; then
   export PI_GUARD_SELF_TEST=1
   cd -- "$repository_root"
-  exec pi \
+  pi \
     --offline \
     --no-approve \
     --no-extensions \
     --extension "$repository_root/.github/pi/ci-guard.ts" \
     --list-models dendro
+  exit 0
 fi
 
 prompt_path=$(realpath -- "$input")
@@ -34,7 +38,7 @@ esac
 prompt=$(<"$prompt_path")
 cd -- "$repository_root"
 
-exec pi \
+pi \
   --print \
   --no-session \
   --offline \

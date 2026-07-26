@@ -87,7 +87,6 @@
             # Make sure update scripts can find the repository root.
             shellHook = ''
               export NIX_PATH="nixpkgs=${pkgs.path}"
-              export PI_CODING_AGENT_DIR="$PWD/.github/pi"
               export PI_OFFLINE=1
               export PI_TELEMETRY=0
 
