@@ -579,20 +579,20 @@ jobs:
                 ref: commit.sha,
               }).then((response) => response.data)),
             );
-            const firstUnsigned = details.findIndex((commit) => !commit.commit.verification?.verified);
-            if (firstUnsigned < 0) throw new Error(`PR #${pullNumber} has no unsigned commits`);
-            const unsigned = details.slice(firstUnsigned);
+            const unsigned = details.filter((commit) => !commit.commit.verification?.verified);
+            if (unsigned.length === 0) throw new Error(`PR #${pullNumber} has no unsigned commits`);
             if (unsigned.some((commit) => !commit.commit.message.startsWith(`bot repair(${packageName}):`))) {
               throw new Error(`PR #${pullNumber} contains an unsigned commit that is not a bot repair`);
             }
-            const parent = unsigned[0].parents?.[0]?.sha;
-            if (!parent) throw new Error("Unsigned repair commit has no parent");
+            if (pull.base.repo?.full_name !== `${context.repo.owner}/${context.repo.repo}` || pull.base.ref !== "main") {
+              throw new Error(`PR #${pullNumber} does not target this repository's main branch`);
+            }
 
             core.setOutput("number", String(pullNumber));
             core.setOutput("package", packageName);
             core.setOutput("branch", pull.head.ref);
             core.setOutput("head", pull.head.sha);
-            core.setOutput("parent", parent);
+            core.setOutput("parent", pull.base.sha);
             core.setOutput("title", pull.title);
       - name: Generate bot token
         id: app-token
