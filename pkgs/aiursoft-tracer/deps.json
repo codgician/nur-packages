@@ -81,8 +81,8 @@
   },
   {
     "pname": "Aiursoft.DbTools.Sqlite",
-    "version": "10.0.27",
-    "hash": "sha256-P3uYhyxqH5CIW7NiOCl9gMVqm2eqj0M2Q+fzMjwvqRc="
+    "version": "10.0.30",
+    "hash": "sha256-EQm7HxJzOO6b+okZd8epjJtfeI2FISd+2lctWE+bdSo="
   },
   {
     "pname": "Aiursoft.DbTools.Switchable",
@@ -106,13 +106,13 @@
   },
   {
     "pname": "Aiursoft.UiStack",
-    "version": "10.0.18",
-    "hash": "sha256-ijARBsuGVmDq3+FWGuK/GY/sYuL5AGE3TcvzQZwF/Qk="
+    "version": "10.0.24",
+    "hash": "sha256-RWVimBxC5SMgg6katfufWQKHbNSWUg+crVd0oFCDyEg="
   },
   {
     "pname": "Aiursoft.WebTools",
-    "version": "10.0.13",
-    "hash": "sha256-1ey1SWxz0FS4au4JtkqhdK+Za8FakE5Q+kGf5b7GPck="
+    "version": "10.0.14",
+    "hash": "sha256-D/SBeN7zLu9WGQQky6u7Qi9BWc/R6z9uyBNLBhTr8cE="
   },
   {
     "pname": "Aiursoft.WebTools.Abstractions",
@@ -516,28 +516,28 @@
   },
   {
     "pname": "Microsoft.Testing.Extensions.Telemetry",
-    "version": "2.3.2",
-    "hash": "sha256-3TancCfYy7OW9IU6q+zQv/ETlbBbcjxADrWVRQITytc="
+    "version": "2.3.3",
+    "hash": "sha256-Doo1IAwnDlbqyg2Q6p82RuYYAQ7VkJnY4Pn9MDZqCOs="
   },
   {
     "pname": "Microsoft.Testing.Extensions.TrxReport.Abstractions",
-    "version": "2.3.2",
-    "hash": "sha256-MohDLqtLk1K93p1TnvYlaBNetpGoTZSep3xVQho3zb0="
+    "version": "2.3.3",
+    "hash": "sha256-YAgHS3B0LwRvIHer285QuSrYCO5FcSpAXazL5pNHB4Y="
   },
   {
     "pname": "Microsoft.Testing.Extensions.VSTestBridge",
-    "version": "2.3.2",
-    "hash": "sha256-9W4FmGvIfuwHQr3AFrCZ/uLhtJws5erQccw7ydT5yBU="
+    "version": "2.3.3",
+    "hash": "sha256-/UlwUEIwQyNZxdD0jNcV34ZJ20aLe2kWQTvH3LOIHes="
   },
   {
     "pname": "Microsoft.Testing.Platform",
-    "version": "2.3.2",
-    "hash": "sha256-kGOyHXenLNMpWyVTDWDh6/hP3qFtnHI5qIaet1udKWM="
+    "version": "2.3.3",
+    "hash": "sha256-sH0AyrX0ny0JgVkgRLrvPXIKB55pQWAcd5AERYSzF0o="
   },
   {
     "pname": "Microsoft.Testing.Platform.MSBuild",
-    "version": "2.3.2",
-    "hash": "sha256-u0jsv5BU7gSBZlHoy94WlqM0QCJCFbEW1g19RxKn17Q="
+    "version": "2.3.3",
+    "hash": "sha256-JeU3+8OebODA2k6KSorm2P7piuQZRdS1hhJKAwdfSJA="
   },
   {
     "pname": "Microsoft.TestPlatform.ObjectModel",
@@ -566,18 +566,18 @@
   },
   {
     "pname": "MSTest.Analyzers",
-    "version": "4.3.2",
-    "hash": "sha256-mzMMs8H6u2pRnOb6UjA1pwSOKsULx2v18Stvp/cvxj0="
+    "version": "4.3.3",
+    "hash": "sha256-eA2MisarWvwuAdV49WduYclUnC+hWfHaTt359U+CdCg="
   },
   {
     "pname": "MSTest.TestAdapter",
-    "version": "4.3.2",
-    "hash": "sha256-qiXoMftAKNEtN2LFwMd2e8EkBn03RfIk15CljjOuU0A="
+    "version": "4.3.3",
+    "hash": "sha256-JwGx4QTT2v/qKcuGg1PCqA04OnrB4eDVSUSaO6G+TgA="
   },
   {
     "pname": "MSTest.TestFramework",
-    "version": "4.3.2",
-    "hash": "sha256-BQUOSbJd2LE5C4C5yx7MTozHaWxpo5R6mPC6EdzVHVk="
+    "version": "4.3.3",
+    "hash": "sha256-d/KPWV68JuLlVKtwdXtfLG/tBJ/d4WY9DVY1fOBhpzQ="
   },
   {
     "pname": "MySqlConnector",
@@ -586,8 +586,8 @@
   },
   {
     "pname": "Net.Codecrete.QrCodeGenerator",
-    "version": "3.0.0",
-    "hash": "sha256-1qjOQgvAEaboMALKgvVo4gdtWBtRn9R46N6gQ7dU1Q4="
+    "version": "3.1.0",
+    "hash": "sha256-OPcViDQepk3wOHLebwWsnLtvXDOORVhG/FjaXiGWdjI="
   },
   {
     "pname": "Newtonsoft.Json",
@@ -616,23 +616,23 @@
   },
   {
     "pname": "SkiaSharp",
-    "version": "4.150.1",
-    "hash": "sha256-Kda85aDEECz51qD3JqUPOaG3Hthrp38Byn6zJWFa1KA="
+    "version": "4.151.1",
+    "hash": "sha256-LR/u8j8o5VhkythEn3tgq/XW2xqmHsB674N+ng6u5z4="
   },
   {
     "pname": "SkiaSharp.NativeAssets.Linux.NoDependencies",
-    "version": "4.150.1",
-    "hash": "sha256-988ZI2mAmeGCb04a8ZDk09eQEFUZRoM4bsQVt2Wi0F8="
+    "version": "4.151.1",
+    "hash": "sha256-8zqhEf9CQc+MsDeXEB3vwOWq3rHWuwCAd3iFQ/uLApo="
   },
   {
     "pname": "SkiaSharp.NativeAssets.macOS",
-    "version": "4.150.1",
-    "hash": "sha256-NYTJvHOfHAOjKqqwBiVSjsy1MiM2cm6NxXAnzcS09vg="
+    "version": "4.151.1",
+    "hash": "sha256-nt58+/t4OynYqY99sjOxsQwDLJF88nD8Z+Wwj5DavdU="
   },
   {
     "pname": "SkiaSharp.NativeAssets.Win32",
-    "version": "4.150.1",
-    "hash": "sha256-HhcG5jO8CCTsybT2XLNe7chmsc21JyXp0/9NyQ1Fvvo="
+    "version": "4.151.1",
+    "hash": "sha256-pulHlVVEDtj9MO5zeEcBRFIYR66keeHv2IXzyAE/5Fg="
   },
   {
     "pname": "SQLitePCLRaw.bundle_e_sqlite3",
@@ -640,19 +640,29 @@
     "hash": "sha256-kWRapMTVEfcc0DxnI9Ai1+RwAAcR2+HUu+WF+OeLJCs="
   },
   {
+    "pname": "SQLitePCLRaw.bundle_e_sqlite3",
+    "version": "2.1.12",
+    "hash": "sha256-qaBua1oxP27zZ1+RmX0BKt7/6KqeH/1p7Uak5oWwVOE="
+  },
+  {
     "pname": "SQLitePCLRaw.core",
     "version": "2.1.11",
     "hash": "sha256-s/fxEoYlNf9c2C4HZueMzPCBvpiViDVlSpg7epB0GXY="
   },
   {
+    "pname": "SQLitePCLRaw.core",
+    "version": "2.1.12",
+    "hash": "sha256-rwaQQTj/ptyVpZkTPWTSVHFtb6zHVDprO5EHk9rp3KU="
+  },
+  {
     "pname": "SQLitePCLRaw.lib.e_sqlite3",
-    "version": "2.1.11",
-    "hash": "sha256-ZmffbHNgnLUdsPbikilEAihxXl1MedIBQ1Xzt9226Bw="
+    "version": "2.1.12",
+    "hash": "sha256-SiLAL/z0iXkpA88mPe+fzidzlxaIP5ZfC17v8WN0MKw="
   },
   {
     "pname": "SQLitePCLRaw.provider.e_sqlite3",
-    "version": "2.1.11",
-    "hash": "sha256-LdfV325AmYgBOwmwP7MNZxMJZkNO6bwrHvB6C5SyItA="
+    "version": "2.1.12",
+    "hash": "sha256-3ysycZkuXXGRhsRnHjz0+GWAl8FUy81BSUq1lMWZdZU="
   },
   {
     "pname": "System.CodeDom",
