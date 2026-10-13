@@ -177,7 +177,7 @@ jobs:
           mkdir -p "$RUNNER_TEMP/candidate"
           git diff --cached --binary --full-index > "$RUNNER_TEMP/candidate/changes.patch"
       - name: Upload candidate
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: new-package-candidate-${{ steps.request.outputs.issue_number }}
           path: ${{ runner.temp }}/candidate
@@ -237,7 +237,7 @@ jobs:
           mkdir -p "$RUNNER_TEMP/verified"
           cp "$RUNNER_TEMP/candidate/changes.patch" "$RUNNER_TEMP/verified/changes.patch"
       - name: Upload verified package
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: new-package-verified-${{ needs.prepare.outputs.issue_number }}
           path: ${{ runner.temp }}/verified
