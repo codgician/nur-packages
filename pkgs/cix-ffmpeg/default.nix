@@ -4,6 +4,7 @@
   darwin,
   cudaPackages,
   fetchFromGitHub,
+  fetchpatch2,
   path,
   cix-vpu-driver,
 }:
@@ -25,6 +26,15 @@ let
     hash = "sha256-50mYY4xfokXw9DlyA18DbCyX9r4uJOEGQZbGpaKC3bU=";
   };
   patch = "${patchesSrc}/debian/ffmpeg-5.1.7/patches/ffmpeg_5_1_7_for_cix_2025q4.patch";
+
+  # generic.nix only applies this for ffmpeg >= 6, but 5.1.7 fails the same
+  # way against SVT-AV1 >= 4.0. The change is guarded by
+  # SVT_AV1_CHECK_VERSION, so it is a no-op with older SVT-AV1.
+  svtAv1Compat = fetchpatch2 {
+    name = "svt-av1-4.0.0-compat.patch";
+    url = "https://git.ffmpeg.org/gitweb/ffmpeg.git/patch/a5d4c398b411a00ac09d8fe3b66117222323844c";
+    hash = "sha256-peIXXU5+5DRQc3Xdpz5V+xIN7Vohs0Dlal6mHiMryXc=";
+  };
 in
 (callPackage (path + "/pkgs/development/libraries/ffmpeg/generic.nix") {
   inherit (darwin) xcode;
@@ -35,7 +45,10 @@ in
 }).overrideAttrs
   (old: {
     pname = "cix-ffmpeg";
-    patches = (old.patches or [ ]) ++ [ patch ];
+    patches =
+      (old.patches or [ ])
+      ++ lib.optional (!lib.elem svtAv1Compat (old.patches or [ ])) svtAv1Compat
+      ++ [ patch ];
 
     # The CIX V4L2 M2M codec glue `#include "mvx-v4l2-controls.h"`,
     # which only lives in the VPU driver source tree. Drop a copy into
