@@ -2,6 +2,9 @@
   lib,
   python3Packages,
   fetchFromGitHub,
+  bash,
+  coreutils,
+  gnugrep,
   linuxPackages,
   nix-update-script,
   runCommand,
@@ -21,7 +24,21 @@ python3Packages.buildPythonApplication (finalAttrs: {
 
   build-system = [ python3Packages.setuptools ];
 
-  nativeCheckInputs = [ python3Packages.pytestCheckHook ];
+  nativeCheckInputs = [
+    bash
+    coreutils
+    gnugrep
+    python3Packages.pytestCheckHook
+  ];
+  postPatch = ''
+    # Upstream fixtures assume FHS paths and PATH utilities; adapt them for the
+    # Nix sandbox without skipping coverage.
+    substituteInPlace tests/test_distribution_patches.py \
+      --replace-fail 'dir="/var/tmp"' 'dir=None' \
+      --replace-fail '#!/bin/sh' '#!${bash}/bin/bash' \
+      --replace-fail 'grep -q "echo five" conftest.sh' '${gnugrep}/bin/grep -q "echo five" conftest.sh' \
+      --replace-fail 'sleep 30' '${coreutils}/bin/sleep 30'
+  '';
   enabledTestPaths = [ "tests" ];
   disabledTests = [
     # Expects the launcher next to a source checkout, not the installed package.
