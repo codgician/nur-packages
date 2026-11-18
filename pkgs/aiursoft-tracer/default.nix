@@ -26,7 +26,6 @@ let
     src = "${src}/src/Aiursoft.Tracer/wwwroot";
     inherit version;
     npmDepsHash = "sha256-OPRWZHMXh5vwdLQjLOH+1zDYKYNE9tmxNcoPrQ1cmgw=";
-    dontNpmBuild = true;
 
     # Upstream .npmrc (and sometimes package-lock.json) may point at Aiursoft's
     # private registry, which is unreliable (Cloudflare 525 errors). Prefer the
@@ -59,6 +58,12 @@ let
 
     dotnet-sdk = dotnetCorePackages.sdk_10_0;
     dotnet-runtime = dotnetCorePackages.aspnetcore_10_0;
+    # Upstream's MSBuild target runs npm ci/build; prepare its slim assets in
+    # the offline npm derivation above and reuse them during the .NET build.
+    dotnetFlags = [ "-p:SkipFrontendBuild=true" ];
+    preBuild = ''
+      ln -s ${wwwroot}/node_modules src/Aiursoft.Tracer/wwwroot/node_modules
+    '';
     nugetDeps = ./deps.json;
 
     projectFile = "Aiursoft.Tracer.sln";
