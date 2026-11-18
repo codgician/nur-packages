@@ -15,11 +15,11 @@ let
   src = fetchFromGitHub {
     owner = "AiursoftWeb";
     repo = "Tracer";
-    rev = "5d9a16eebfcce6b8d0c0dd6b1630a63f3c945318";
-    hash = "sha256-nqWmsjpwe3iGayAlu2xR09ohOnujKLqrW5DNlcJjZzc=";
+    rev = "98e4a1f892477d62c38aafa1db4c604b6b7e2a83";
+    hash = "sha256-836S9xNK/eIzaOc+vjJF6mMXoo/4FCd1fv5astz2CCQ=";
   };
 
-  version = "0-unstable-2026-11-15";
+  version = "0-unstable-2026-11-17";
 
   wwwroot = buildNpmPackage {
     pname = "${pname}-wwwroot";
