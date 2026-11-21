@@ -8,6 +8,9 @@
   glib,
   gtk3,
   gdk-pixbuf,
+  gobject-introspection,
+  vala,
+  wayland-scanner,
   wrapGAppsHook3,
   nix-update-script,
 }:
@@ -25,6 +28,13 @@ stdenv.mkDerivation (finalAttrs: {
 
   sourceRoot = "source/subprojects/appmenu-gtk-module";
 
+  # The module's Meson build uses appmenu-glib-translator as a fallback
+  # subproject, which is a sibling in the upstream repository.
+  preConfigure = ''
+    mkdir -p subprojects
+    ln -s ../../appmenu-glib-translator subprojects/appmenu-glib-translator
+  '';
+
   # Fix gtk3 module target dir. Proper upstream solution should be using define_variable.
   env.PKG_CONFIG_GTK__3_0_LIBDIR = "${placeholder "out"}/lib";
 
@@ -37,6 +47,9 @@ stdenv.mkDerivation (finalAttrs: {
     ninja
     pkg-config
     glib # glib-compile-schemas + setup hook for gsettings install dir
+    gobject-introspection
+    vala
+    wayland-scanner
     wrapGAppsHook3
   ];
 
