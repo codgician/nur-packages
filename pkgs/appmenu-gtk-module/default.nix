@@ -14,13 +14,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "appmenu-gtk-module";
-  version = "25.04";
+  version = "26.11";
 
   src = fetchFromGitLab {
     owner = "vala-panel-project";
     repo = "vala-panel-appmenu";
     tag = finalAttrs.version;
-    hash = "sha256-v5J3nwViNiSKRPdJr+lhNUdKaPG82fShPDlnmix5tlY=";
+    hash = "sha256-eZMPjrsp30+0ttDOHKzsp28B/gc3GnrujtuoKqrMF8o=";
   };
 
   sourceRoot = "source/subprojects/appmenu-gtk-module";
